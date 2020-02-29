@@ -5,28 +5,19 @@ import template from './template';
 export default function Index(props){
 
     let file = null;
-    let disabled = true;
 
-    console.info(props);
     const setFile = (event)=>{ 
-        console.info(event.currentTarget);
-        file = event.currentTarget.files[0];
-        console.info(file);
-        disabled = false;
-        
+        file = event.currentTarget.files[0];        
     };
 
     const getPrediction = async(event)=>{
-
-        console.info(event);
-        console.info(file);
 
         const form = new FormData();
         form.append('file', file);
 
         if(file){
             const apiUrl = '/api/prediction';
-            const prediction = await fetch(apiUrl, {
+            const result = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': file.type
@@ -34,9 +25,10 @@ export default function Index(props){
                 body:file
             });
     
-            console.info(prediction);
+            const prediction = await result.json();
+            console.info(`prediction: ${prediction}`);
 
-            //window.location = `/display-prediction?prediction=${prediction}`;
+            window.location = `/display-prediction?prediction=${prediction}`;
         }
 
         event.preventDefault();

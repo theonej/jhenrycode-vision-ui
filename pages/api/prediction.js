@@ -28,7 +28,7 @@ export default async (req, res)=>{
 
             const prediction = await result.text();
             console.info(`prediction: ${JSON.stringify(prediction)}`);
-            res.status(200).json({prediction});
+            res.status(200).json(prediction);
         })
 
     }catch(e){
