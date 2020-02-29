@@ -1,0 +1,29 @@
+{
+  "name": "jhenrycode-vision-ui",
+  "version": "1.0.0",
+  "description": "Step #1 - Initialize Project - React - Redux - Thunk",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theonej/jhenrycode-vision-ui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theonej/jhenrycode-vision-ui/issues"
+  },
+  "homepage": "https://github.com/theonej/jhenrycode-vision-ui#readme",
+  "dependencies": {
+    "form-data": "^3.0.0",
+    "next": "^9.2.2",
+    "node-fetch": "^2.6.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  }
+}
