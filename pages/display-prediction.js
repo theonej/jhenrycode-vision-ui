@@ -49,11 +49,20 @@ const DisplayPrediction = props =>{
 }
 
 DisplayPrediction.getInitialProps = async(ctx)=>{
-    const {imageKey, predictions} = ctx.query;
+    const {imageKey} = ctx.query;
+    const {req} = ctx;
+
+    const apiUrl = `http://${req.headers.host}/api/predictions/${imageKey}`;
+
+    const result = await fetch(apiUrl, {
+        method:'GET'
+    });
+
+    const predictions = (await result.json()).predictions
 
     return {
         imageKey:imageKey,
-        predictions:JSON.parse(predictions)
+        predictions
     }
 }
 

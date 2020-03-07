@@ -23,9 +23,10 @@ export default function Index(props){
                 body:file
             });
     
-            const {predictions, imageKey} = await result.json();
+            const {imageKey} = await result.json();
 
-            window.location = `/display-prediction?predictions=${JSON.stringify(predictions)}&imageKey=${imageKey}`;
+            console.info(imageKey);
+            window.location = `/display-prediction?imageKey=${imageKey}`;
         }
     };
 

@@ -1,8 +1,6 @@
 const fetch = require('node-fetch');
 const FormData = require('form-data');
-const uuid = require('uuid');
 const sharp = require('sharp');
-const fs = require('fs');
 
 export default async (req, res)=>{
 
@@ -18,9 +16,9 @@ export default async (req, res)=>{
         //the prediction comes back as an array of results; we only care about the first one
         const predictions = await getPrediction(resized);
 
-        const imageKey = await saveImage(resized);
+        const imageKey = await saveImage(resized, predictions);
 
-        res.status(200).json({predictions, imageKey});
+        res.status(200).json({imageKey});
 
     }catch(e){
         console.error(`an erorr occurred while getting prediction: ${e}`);
@@ -58,7 +56,35 @@ const getPrediction = async (imageBuffer)=>{
     return predictions;
 };
 
+
+const saveImage = async(imageBuffer, predictions)=>{
+
+    const imageBase64 = imageBuffer.toString('base64');
+
+    const esData = {
+        predictions,
+        imageBase64
+    }
+
+    const esUrl = `${process.env.ES_CLUSTER_URL}/images/_doc`;
+
+    const result = await fetch(esUrl, {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(esData)
+    });
+
+    console.info(JSON.stringify(result));
+    const docInfo = await result.json();
+
+    console.info(docInfo);
+    return docInfo._id;
+};
+/*
 const saveImage = async(imageBuffer)=>{
+    //save image to es
     const imageKey = `${uuid.v1()}.png`;
     const imagePath = `./static/${imageKey}`;
 
@@ -66,7 +92,7 @@ const saveImage = async(imageBuffer)=>{
 
     return imageKey;
 };
-
+*/
 const getData = async(req)=>{
     return new Promise((resolve, reject)=>{
         const data = []

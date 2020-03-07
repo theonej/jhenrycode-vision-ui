@@ -1,18 +1,29 @@
-const fs = require('fs');
+const fetch = require('node-fetch');
 
-
-export default (req, res)=>{
+export default async (req, res)=>{
     try{
        const {query: {imageKey}} = req;
 
-        console.info(`server side image key: ${imageKey}`);
-        const imagePath = `./static/${imageKey}`;
+        const imageData = await getImage(imageKey);
 
-        const imageData = fs.readFileSync(imagePath);
         res.writeHead(301, {'Content-Type':'image/png'});
         res.end(imageData, 'binary');
     }catch(e){
         console.error(`an erorr occurred while getting image data: ${e}`);
         res.status(500).json({message:e});
     }
+};
+
+const getImage = async (imageKey)=>{
+    const esUrl = `${process.env.ES_CLUSTER_URL}/images/_doc/${imageKey}?_source_includes=imageBase64`;
+
+    const result = await fetch(esUrl, {
+        method:'GET'
+    });
+
+    const document = await result.json();
+
+    const buffer = new Buffer(document._source.imageBase64, 'base64');
+
+    return buffer;
 };
