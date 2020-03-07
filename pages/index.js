@@ -1,7 +1,5 @@
 const FormData = require('form-data');
 
-import template from './template';
-
 export default function Index(props){
 
     let file = null;
@@ -25,13 +23,10 @@ export default function Index(props){
                 body:file
             });
     
-            const prediction = await result.json();
-            console.info(`prediction: ${prediction}`);
+            const {predictions, imageKey} = await result.json();
 
-            window.location = `/display-prediction?prediction=${prediction}`;
+            window.location = `/display-prediction?predictions=${JSON.stringify(predictions)}&imageKey=${imageKey}`;
         }
-
-        event.preventDefault();
     };
 
     return(
@@ -40,9 +35,9 @@ export default function Index(props){
                 <h1>jhenrycode-vision</h1>
                 <p>Please select an image</p>
                 <div>
-                    <input type="file" onChange={setFile} name="image-data" id="image-data"></input>
-                        
-                    <button onClick={getPrediction}>Get Prediction</button>
+                    <input type="file" name="image-data" id="image-data" onChange={setFile}></input>
+                    
+                    <button onClick={getPrediction}>get prediction</button>
 
                 </div>
             </div>
