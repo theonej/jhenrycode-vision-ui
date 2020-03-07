@@ -29,7 +29,7 @@ export default async (req, res)=>{
 }
 
 const getPrediction = async (imageBuffer)=>{
-    const apiUrl = 'http://jhenrycode-vision-1387687315.us-east-1.elb.amazonaws.com:9001/prediction/plant_maturity';
+    const apiUrl = process.env.PREDICTION_SERVICE_URL;
 
     const form = new FormData();
     form.append('image-data', imageBuffer, {

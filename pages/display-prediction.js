@@ -29,6 +29,16 @@ const DisplayPrediction = props =>{
                     border-radius:250px;
                     height:200px;
                     width:200px;
+                    float:left;
+                }
+
+                .prediction-info{
+                    float:left;
+                }
+
+                .prediction-info ul li {
+                    list-style:none;
+                    padding:10px 5px;
                 }
 
             `}</style>

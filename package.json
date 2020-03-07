@@ -1,7 +1,7 @@
 {
   "name": "jhenrycode-vision-ui",
   "version": "1.0.0",
-  "description": "Step #1 - Initialize Project - React - Redux - Thunk",
+  "description": "ui for predictions",
   "main": "index.js",
   "scripts": {
     "dev": "next",
