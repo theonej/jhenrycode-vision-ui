@@ -61,9 +61,12 @@ const saveImage = async(imageBuffer, predictions)=>{
 
     const imageBase64 = imageBuffer.toString('base64');
 
+    const created = new Date();
+    
     const esData = {
         predictions,
-        imageBase64
+        imageBase64,
+        created
     }
 
     const esUrl = `${process.env.ES_CLUSTER_URL}/images/_doc`;

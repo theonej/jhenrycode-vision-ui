@@ -16,11 +16,13 @@ function Template(props){
                     font-family:"Proxima Nova",system-ui,sans-serif;
                     background-color:#efefef;
                     height:100%;
+                    margin-top:10px;
                 }
 
                 .layout {
+                    padding-top:10px;
                     height: 100%;
-                    display: flex;
+                    display: grid;
                     align-items: center;
                     justify-content: center;
                 }
