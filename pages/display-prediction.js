@@ -13,8 +13,8 @@ const DisplayPrediction = props =>{
                     <div className="prediction-info">
                         <h2>Predictions ({predictions.length})</h2>
                         <ul>
-                            {predictions.map(prediction=>(
-                                    <li>{prediction.name}: {prediction.value}%</li>
+                            {predictions.map((prediction, index)=>(
+                                    <li key={index}>{prediction.name}: {prediction.value}%</li>
                                 )
                             )
                             }
@@ -26,10 +26,10 @@ const DisplayPrediction = props =>{
             <style jsx>{`
                 
                 .image-view img{
-                    border-radius:250px;
-                    height:200px;
-                    width:200px;
+                    height:144px;
+                    width:256px;
                     float:left;
+                    margin:15px;
                 }
 
                 .prediction-info{
