@@ -30,6 +30,7 @@ export default async (req, res)=>{
 
 const getPrediction = async (imageBuffer)=>{
     const apiUrl = process.env.PREDICTION_SERVICE_URL;
+    console.info(`prediction service url: ${apiUrl}`);
 
     const form = new FormData();
     form.append('image-data', imageBuffer, {

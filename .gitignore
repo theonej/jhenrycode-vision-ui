@@ -105,4 +105,4 @@ dist
 
 **/*.png
 
-next.js.config
+next.config.js
