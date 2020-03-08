@@ -35,7 +35,7 @@ export default function Index(props){
         <div>
             <div>
                 <h1>jhenrycode-vision</h1>
-                <h2>please select and image</h2>
+                <h2>please select an image</h2>
                 <div>
                     <input type="file" name="image-data" id="iamge-data" onChange={setFile}></input>
 
