@@ -62,7 +62,7 @@ const saveImage = async(imageBuffer, predictions)=>{
         created
     };
 
-    const esUrl = `${process.env.ES_CLUSTER_URL}/image/_doc`;
+    const esUrl = `${process.env.ES_CLUSTER_URL}/images/_doc`;
 
     const result = await fetch(esUrl, {
         method: 'POST',

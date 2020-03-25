@@ -28,6 +28,7 @@ export default function Index(props){
             const {imageKey} = await result.json();
 
             console.info(imageKey);
+            window.location = `/display-prediction?imageKey=${imageKey}`;
         }
     };
 
